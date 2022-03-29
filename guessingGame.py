@@ -1,11 +1,28 @@
 import random
-numbers = ['1','2','3','4','5','6','7','8','9']
 
-print("Number Guessing Game")
-print("Guess a Number (between 1 to 9):")
+numbers = ['1','2','3','4','5','6','7','8','9','10']
+currentchoice = random.randint(0,len(numbers)-1)
 
-numbers = int(input("Enter your Guess:- "))    
-if (numbers < 8):
-    print("Try Again")
-if (numbers == 9):
-    print("Congratulations, You Have WON!")
+def check_answer(value):
+    if value == numbers[currentchoice]:
+        return True
+    else:
+        return False
+    
+print("----- Number Guessing Game -----\nI am thinking of a number between One to Ten.\nYou have to guess that number.")
+
+while True:
+    try:
+        num = str(input("Enter your guess:- "))
+        if not num in numbers:
+            print('Please enter one from {}'.format(numbers)+'.')
+        else:
+            if check_answer(num):
+                print("Congratulations, You Have WON!")
+                break
+            else:
+                print("Try Again...")
+                currentchoice = random.randint(0,len(numbers)-1)
+    except:
+        print("\nBye.")
+        break
